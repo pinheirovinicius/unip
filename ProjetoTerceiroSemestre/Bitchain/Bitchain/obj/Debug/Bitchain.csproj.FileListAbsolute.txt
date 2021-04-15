@@ -1,0 +1,16 @@
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\bin\Debug\Bitchain.exe.config
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\bin\Debug\Bitchain.exe
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\bin\Debug\Bitchain.pdb
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.CadastrarUsuario.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.ContaUsuario.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.Default.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.EsqueciSenha.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.Login.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.TelaMoeda.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.Properties.Resources.resources
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.csproj.GenerateResource.cache
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.csproj.CoreCompileInputs.cache
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.csproj.CopyComplete
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.exe
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.pdb
+C:\Users\vinicius.pinheiro\Downloads\PIM - Samuel\Projeto\Bitchain\Bitchain\obj\Debug\Bitchain.csprojAssemblyReference.cache

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db_Bitchain" Class="BaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=db_Bitchain;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="db_BitchainConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Banco" Member="Bancos">
+    <Type Name="Banco">
+      <Column Name="ID_BANCO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_BANCO" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Association Name="Banco_Conta" Member="Contas" ThisKey="ID_BANCO" OtherKey="ID_BANCO" Type="Conta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsuarioLogado" Member="UsuarioLogados">
+    <Type Name="UsuarioLogado">
+      <Column Name="ID_USUARIOLOGADO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Conta" Member="Contas">
+    <Type Name="Conta">
+      <Column Name="ID_CONTA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_BANCO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NR_AGENCIA" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="NR_CCORRENTE" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="NR_DV" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="VL_SALDO" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FL_HABILITA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DT_CADASTRO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ID_USUARIOCADASTRO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Banco_Conta" Member="Banco" ThisKey="ID_BANCO" OtherKey="ID_BANCO" Type="Banco" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Usuario_Conta" Member="Usuario" ThisKey="ID_USUARIO" OtherKey="ID_USUARIO" Type="Usuario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ListaMoeda" Member="ListaMoedas">
+    <Type Name="ListaMoeda">
+      <Column Name="ID_MOEDA" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NM_SIGLA" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="VL_BASE" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="VL_REAL" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FL_HABILITA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu_Web" Member="Menu_Webs">
+    <Type Name="Menu_Web">
+      <Column Name="ID_MENU_WEB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_MENU_PAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NM_URL" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="ID_Sistema" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_Web_Menu_Web_Permissao" Member="Menu_Web_Permissaos" ThisKey="ID_MENU_WEB" OtherKey="ID_MENU_WEB" Type="Menu_Web_Permissao" />
+      <Association Name="Sistema_Menu_Web" Member="Sistema" ThisKey="ID_Sistema" OtherKey="ID_SISTEMA" Type="Sistema" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu_Web_Permissao" Member="Menu_Web_Permissaos">
+    <Type Name="Menu_Web_Permissao">
+      <Column Name="ID_MENU_WEB" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Menu_Web_Menu_Web_Permissao" Member="Menu_Web" ThisKey="ID_MENU_WEB" OtherKey="ID_MENU_WEB" Type="Menu_Web" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Usuario_Menu_Web_Permissao" Member="Usuario" ThisKey="ID_USUARIO" OtherKey="ID_USUARIO" Type="Usuario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParamSite" Member="ParamSites">
+    <Type Name="ParamSite">
+      <Column Name="ID_PARAMSITE" Type="System.Byte" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_URLSITE" Type="System.String" DbType="VarChar(512)" CanBeNull="true" />
+      <Column Name="NM_SMTP_USER" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NM_SMTP_SRV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NM_SMTP_PASS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TP_SMTP_AUTENTIC" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="NR_SMTP_PORT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DS_EMAILBCC" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NM_SMTP_EMAIL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NM_DIRETORIO_LOGO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Perfil" Member="Perfils">
+    <Type Name="Perfil">
+      <Column Name="ID_PERFIL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="Perfil_Usuario" Member="Usuarios" ThisKey="ID_PERFIL" OtherKey="ID_PERFIL" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Sistema" Member="Sistemas">
+    <Type Name="Sistema">
+      <Column Name="ID_SISTEMA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DT_CADASTRO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Sistema_Menu_Web" Member="Menu_Webs" ThisKey="ID_SISTEMA" OtherKey="ID_Sistema" Type="Menu_Web" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Transacao" Member="Transacaos">
+    <Type Name="Transacao">
+      <Column Name="ID_TRANSACAO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_USUARIO_DE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_CONTA_DE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_USUARIO_PARA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_CONTA_PARA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VL_BRUTO" Type="System.Decimal" DbType="Decimal(20,2) NOT NULL" CanBeNull="false" />
+      <Column Name="DT_TRANSACAO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_Transacao" Member="Usuario" ThisKey="ID_USUARIO_DE" OtherKey="ID_USUARIO" Type="Usuario" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_NOME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_CPF" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="NM_EMAIL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_TELEFONE" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="NR_CELULAR" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="NM_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NM_SENHA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ID_PERFIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FL_HABILITA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FL_TROCA_SENHA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="NM_USUARIO_CADASTRO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DT_CADASTRO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NM_USUARIO_ALTERACAO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DT_ALTERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NR_ULTIMO_ACESSO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DT_ULTIMO_ACESSO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Usuario_Conta" Member="Contas" ThisKey="ID_USUARIO" OtherKey="ID_USUARIO" Type="Conta" />
+      <Association Name="Usuario_Menu_Web_Permissao" Member="Menu_Web_Permissaos" ThisKey="ID_USUARIO" OtherKey="ID_USUARIO" Type="Menu_Web_Permissao" />
+      <Association Name="Usuario_Transacao" Member="Transacaos" ThisKey="ID_USUARIO" OtherKey="ID_USUARIO_DE" Type="Transacao" />
+      <Association Name="Perfil_Usuario" Member="Perfil" ThisKey="ID_PERFIL" OtherKey="ID_PERFIL" Type="Perfil" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_lstTransacao" Member="vw_lstTransacaos">
+    <Type Name="vw_lstTransacao">
+      <Column Name="ID_Transacao" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Usuario_De" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NM_Usuario_De" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_CPF_De" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="NM_Banco_De" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="VL_Saldo_De" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="VL_Transacao" Type="System.Decimal" DbType="Decimal(20,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Usuario_Para" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NM_Usuario_Para" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_CPF_Para" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="NM_Banco_Para" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="VL_Saldo_Para" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="DT_Transacao" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

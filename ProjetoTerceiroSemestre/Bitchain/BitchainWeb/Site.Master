@@ -1,0 +1,119 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SegOn.SiteMaster" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<%--<!DOCTYPE html>--%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1990 12:00:00 GMT" />
+
+    <title>SABEMI</title>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-67091530-1']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link href="Styles/Master.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <%--<form id="form1" runat="server">
+        <div>
+            <asp:Label Text="UHUUUUU" runat="server" Font-Size="Large"></asp:Label>
+        </div>
+    </form>--%>
+        <div id="divLogo" class="header" runat="server" >
+
+        <asp:Label ID="lTitulo" runat="server" 
+                   Font-Size="Medium" 
+                   Font-Names="Calibri"
+                   CssClass="textoTop" />
+        <br />
+        <asp:Label ID="lTitulo2" runat="server" 
+                   Font-Size="Medium" 
+                   Font-Names="Calibri"
+                   CssClass="textoTop" />
+
+        <asp:Label ID="lTitulo2L" runat="server" 
+                   Font-Size="Large" 
+                   Font-Names="Calibri"
+                   ForeColor="Red"
+                   Font-Bold="true"
+                   style="float: left;"
+                   Text="" />
+        <br />
+        <asp:Label ID="lSubTituloL" runat="server"
+                   CssClass="textoTop"
+                   Font-Size="Small"
+                   Font-Names="Calibri" />
+        <br />
+        <asp:Label ID="lSubTituloR" runat="server"
+                   Text=""
+                   CssClass="textoTop"
+                   Font-Size="Small"
+                   Font-Names="Calibri" />
+    </div>
+
+    <div class="body1">
+        <div class="header_faixa_grande">
+        </div>
+        <div class="RadMenu_Default">
+            <telerik:RadMenu ID="rmSVG" runat="server"
+                             DataFieldID="ID_Menu_Web" 
+                             RenderMode="Classic"
+                             EnableEmbeddedSkins="true"
+                             DataFieldParentID="ID_Menu_Pai" 
+                             DataNavigateUrlField="NM_URL" 
+                             DataSourceID="MenuLinqDataSource" 
+                             DataTextField="NM_Descricao" 
+                             DataValueField="ID_Menu_Web"
+                             Font-Names="Calibri"
+                             style="z-index: 2301;"
+                             Width="100%"/>
+        </div>
+        <div class="conteudo">
+            <form id="form1" runat="server">
+                <telerik:RadScriptManager ID="rsmSVG" Runat="server" AsyncPostBackTimeout="360000" />
+
+                <telerik:RadAjaxManager ID="ramMaster" runat="server" 
+                                        UpdatePanelsRenderMode="Inline" />
+
+                <telerik:RadSkinManager ID="rskmSVG" runat="server"
+                                        Skin="WebBlue" />
+
+                <telerik:RadFormDecorator ID="rfdSVG" runat="server" 
+                                            DecoratedControls="All" 
+                                            Skin="WebBlue" 
+                                            Font-Names="Calibri" />
+               
+                <asp:LinqDataSource ID="MenuLinqDataSource" runat="server" 
+                                    ContextTypeName="SegOn.BaseDataContext" 
+                                    EntityTypeName="" 
+                                    Where="ID_CorretorUsuario = @Usuario And Menu_Web.ID_Sistema = 1"
+                                    Select="new (ID_Menu_Web, Menu_Web.ID_Menu_Pai, Menu_Web.NM_URL, Menu_Web.NM_Descricao)"
+                                    TableName="Menu_Web_Permissaos">
+                    <WhereParameters>
+                        <asp:SessionParameter SessionField="Usuario" Name="Usuario" DefaultValue="0" DbType="Int32" />
+                    </WhereParameters>
+                </asp:LinqDataSource>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </form>
+        </div>     
+    </div>
+</body>
+</html>

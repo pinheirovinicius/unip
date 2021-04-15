@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db_Bitchain" Class="DataBaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=db_Bitchain;User ID=sa" SettingsObjectName="Bitchain.Properties.Settings" SettingsPropertyName="db_BitchainConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_NOME" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_CPF" Type="System.String" DbType="VarChar(14)" CanBeNull="true" />
+      <Column Name="NM_EMAIL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NR_TELEFONE" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="NR_CELULAR" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="NM_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NM_SENHA" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ID_PERFIL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FL_HABILITA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FL_TROCA_SENHA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="NM_USUARIO_CADASTRO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DT_CADASTRO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NM_USUARIO_ALTERACAO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DT_ALTERACAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NR_ULTIMO_ACESSO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DT_ULTIMO_ACESSO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Perfil_Usuario" Member="Perfil" ThisKey="ID_PERFIL" OtherKey="ID_PERFIL" Type="Perfil" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Perfil" Member="Perfils">
+    <Type Name="Perfil">
+      <Column Name="ID_PERFIL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
+      <Association Name="Perfil_Usuario" Member="Usuarios" ThisKey="ID_PERFIL" OtherKey="ID_PERFIL" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UsuarioLogado" Member="UsuarioLogados">
+    <Type Name="UsuarioLogado">
+      <Column Name="ID_USUARIOLOGADO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_USUARIO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ListaMoeda" Member="ListaMoedas">
+    <Type Name="ListaMoeda">
+      <Column Name="ID_MOEDA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NM_SIGLA" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="NM_DESCRICAO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="VL_BASE" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="VL_REAL" Type="System.Decimal" DbType="Decimal(20,2)" CanBeNull="true" />
+      <Column Name="FL_HABILITA" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
